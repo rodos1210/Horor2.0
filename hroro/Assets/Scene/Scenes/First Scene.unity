@@ -20111,7 +20111,7 @@ GameObject:
   - component: {fileID: 1746247653}
   - component: {fileID: 1746247652}
   - component: {fileID: 1746247651}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23561,7 +23561,7 @@ GameObject:
   - component: {fileID: 2029418711}
   - component: {fileID: 2029418713}
   - component: {fileID: 2029418712}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
