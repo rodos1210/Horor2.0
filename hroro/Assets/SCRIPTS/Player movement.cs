@@ -14,6 +14,7 @@ public class Playermovement : MonoBehaviour
     [SerializeField] private Transform camerapivot;
     [SerializeField] private float mouseSensivity = 2f;
 
+
     private CharacterController controller;
     private float vertikalSpeed;
     void Start()
@@ -45,6 +46,7 @@ public class Playermovement : MonoBehaviour
         }
 
         camerapivot.localEulerAngles = new Vector3(newAngel, 0, 0);
+
     }
     private void HandleMove()
     {

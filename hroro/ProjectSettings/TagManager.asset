@@ -6,6 +6,8 @@ TagManager:
   tags:
   - HaveAnamali
   - DontHaveAnamali
+  - Reset1
+  - Reset2
   layers:
   - Default
   - TransparentFX
