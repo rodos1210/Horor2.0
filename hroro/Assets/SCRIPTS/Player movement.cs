@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Playermovement : MonoBehaviour
 {
+    [Header("Steps")]
+    public AudioSource audioSource;
+    public AudioClip walkSound;
+    public KeyCode walkKey = KeyCode.W; 
+    public float soundCooldown = 0.5f; 
+    private float timer;
+
+
     [Header("Movement")]
     [SerializeField] private float walkspeed = 2f;
     [SerializeField] private float runspeed = 3f;
@@ -28,7 +36,30 @@ public class Playermovement : MonoBehaviour
     {
         HendleLook();
         HandleMove();
+
+        if (Input.GetKey(walkKey))
+        {
+            timer += Time.deltaTime;
+            if (timer >= soundCooldown)
+            {
+                PlayWalkSound();
+                timer = 0;
+            }
+        }
+
+        else
+        {
+            timer = soundCooldown;
+        }
     }
+    void PlayWalkSound()
+    {
+        if (audioSource && walkSound)
+        {
+            audioSource.PlayOneShot(walkSound);
+        }
+    }
+
 
     private void HendleLook()
     {
