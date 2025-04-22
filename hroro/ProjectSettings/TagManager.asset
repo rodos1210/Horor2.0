@@ -8,6 +8,7 @@ TagManager:
   - DontHaveAnamali
   - Reset1
   - Reset2
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - pp
   - Water
   - UI
-  - 
+  - Door
   - 
   - 
   - 

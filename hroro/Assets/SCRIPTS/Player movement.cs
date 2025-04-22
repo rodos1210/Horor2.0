@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Playermovement : MonoBehaviour
 {
+
     [Header("Movement")]
     [SerializeField] private float walkspeed = 2f;
     [SerializeField] private float runspeed = 3f;
@@ -19,6 +23,7 @@ public class Playermovement : MonoBehaviour
     private float vertikalSpeed;
     void Start()
     {
+
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
