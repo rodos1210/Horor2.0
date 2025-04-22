@@ -35,6 +35,7 @@ public class Playermovement : MonoBehaviour
         HandleMove();
     }
 
+
     private void HendleLook()
     {
         float mousex = Input.GetAxis("Mouse X") * mouseSensivity;
