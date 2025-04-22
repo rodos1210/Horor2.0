@@ -12,8 +12,11 @@ public class DoorOpen : MonoBehaviour
     [SerializeField] private LayerMask Layer;
     [SerializeField] private float distance;
     [SerializeField] private GameObject cam;
-    private int counter = 1;
     bool keypress = false;
+
+    [SerializeField] private AudioClip opendoor;
+    [SerializeField] private AudioClip closedoor;
+    [SerializeField] private AudioSource source;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -31,11 +34,15 @@ public class DoorOpen : MonoBehaviour
                 {
                     anim.SetBool("Is Open", true);
                     keypress = true;
+                    source.clip = opendoor;
+                    source.Play();
                 }
                 else
                 {
                     anim.SetBool("Is Open", false);
                     keypress = false;
+                    source.clip = closedoor;
+                    source.Play();
                 }
             }
         }
