@@ -24,6 +24,9 @@ public class LVLSwaper : MonoBehaviour
     public GameObject reset1;
     public GameObject reset2;
 
+    private int FirstTryCounter;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +36,7 @@ public class LVLSwaper : MonoBehaviour
         lvl.Add(pref3);
         transform.position = new Vector3(0, 0, 0);
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
-        Player.transform.position = new Vector3(-2, 1, -19);
+        Player.transform.position = new Vector3(-2.5f, 1, -21);
     }
 
     // Update is called once per frame
@@ -44,7 +47,11 @@ public class LVLSwaper : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("HaveAnamali"))
+        if (other.gameObject.CompareTag("firsttry"))
+        {
+            FirstTryCounter = 1;
+        }
+        if (other.gameObject.CompareTag("HaveAnamali") && FirstTryCounter == 1)
         {
             lvl.RemoveAt(index);
             maxindex -= 1;
@@ -61,7 +68,7 @@ public class LVLSwaper : MonoBehaviour
                 SpawnObjectsForDHA();
             }
         }
-        else if (other.gameObject.CompareTag("DontHaveAnamali"))
+        else if (other.gameObject.CompareTag("DontHaveAnamali") && FirstTryCounter == 1)
         {
             lvl.RemoveAt(index);
             maxindex -= 1;
@@ -78,14 +85,14 @@ public class LVLSwaper : MonoBehaviour
                 SpawnObjectsForHA();
             }
         }
-        else if (reset1.tag == "Reset1" || reset2.tag == "Reset1")
+        else if (reset1.tag == "Reset1" || reset2.tag == "Reset1" && FirstTryCounter == 1)
         {
             lift1.tag = "DontHaveAnamali";
             lift2.tag = "HaveAnamali";
             reset1.tag = "Untagged";
             reset2.tag = "Untagged";
         }
-        else if (reset2.tag == "Reset2" || reset1.tag == "Reset2")
+        else if (reset2.tag == "Reset2" || reset1.tag == "Reset2" && FirstTryCounter == 1)
         {
             lift1.tag = "HaveAnamali";
             lift2.tag = "DontHaveAnamali";

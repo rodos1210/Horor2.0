@@ -1091,6 +1091,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 304364981}
     m_Modifications:
+    - target: {fileID: 133971656519202033, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 240851072811314261, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8550628
@@ -1135,13 +1139,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: (Prb)Separator (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3983790868604066892, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4104743030236102409, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4324181442426259190, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.9164343
+      value: 0.214
       objectReference: {fileID: 0}
     - target: {fileID: 4324181442426259190, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1439,6 +1447,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1617020820}
     m_Modifications:
+    - target: {fileID: 133971656519202033, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 240851072811314261, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8550628
@@ -1483,13 +1495,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: (Prb)Separator (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3983790868604066892, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4104743030236102409, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4324181442426259190, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0114343
+      value: -1.989
       objectReference: {fileID: 0}
     - target: {fileID: 4324181442426259190, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3300,6 +3316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1617020820}
     m_Modifications:
+    - target: {fileID: 133971656519202033, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 240851072811314261, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8550628
@@ -3344,13 +3364,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: (Prb)Separator
       objectReference: {fileID: 0}
+    - target: {fileID: 3983790868604066892, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4104743030236102409, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4324181442426259190, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.9164343
+      value: -0.914
       objectReference: {fileID: 0}
     - target: {fileID: 4324181442426259190, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4953,6 +4977,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 304364981}
     m_Modifications:
+    - target: {fileID: 133971656519202033, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 240851072811314261, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8550628
@@ -4997,13 +5025,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: (Prb)Separator (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3983790868604066892, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4104743030236102409, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4324181442426259190, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0144343
+      value: -3.172
       objectReference: {fileID: 0}
     - target: {fileID: 4324181442426259190, guid: 00054b7f105fdce479315a0b18b079e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6528,6 +6560,7 @@ MonoBehaviour:
   lift2: {fileID: 1705788533}
   reset1: {fileID: 363126961}
   reset2: {fileID: 2130990961}
+  door: {fileID: 0}
 --- !u!1001 &1964171972
 PrefabInstance:
   m_ObjectHideFlags: 0
