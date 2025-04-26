@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Presets;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class LiftDoor : MonoBehaviour
+public class LiftDoorSecond : MonoBehaviour
 {
     public Animator anim;
     public GameObject player;
     public AudioSource sr;
     public AudioClip ad;
-    public AudioClip adstart;
+
     public bool InLift;
     void Start()
     {
         anim = GetComponent<Animator>();
-        sr.clip = adstart;
-        sr.Play();
         Invoke("StartOpenDoorLift", 4f);
     }
 
@@ -23,26 +21,25 @@ public class LiftDoor : MonoBehaviour
     void Update()
     {
         VneLift();
-        StartCoroutine(Lift1());
+        StartCoroutine(Lift2());
     }
 
     public void StartOpenDoorLift()
     {
-        anim.SetBool("Is Open for lift1", true);
+        anim.SetBool("Is Open for lift2", true);
     }
 
 
-
-    public IEnumerator Lift1()
+    public IEnumerator Lift2()
     {
-        if (player.transform.position.z < -20.65f && InLift == true)
+        if (player.transform.position.z > 10.55f && InLift == true)
         {
             InLift = false;
-            anim.SetBool("Is Open for lift1", false);
+            anim.SetBool("Is Open for lift2", false);
             sr.clip = ad;
             sr.Play();
             yield return new WaitForSeconds(4f);
-            anim.SetBool("Is Open for lift1", true);
+            anim.SetBool("Is Open for lift2", true);
         }
     }
     public void VneLift()

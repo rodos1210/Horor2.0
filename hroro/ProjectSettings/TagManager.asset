@@ -9,6 +9,8 @@ TagManager:
   - Reset1
   - Reset2
   - Door
+  - firsttry
+  - Static
   layers:
   - Default
   - TransparentFX

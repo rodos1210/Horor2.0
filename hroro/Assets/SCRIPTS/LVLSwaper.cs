@@ -26,10 +26,13 @@ public class LVLSwaper : MonoBehaviour
 
     private int FirstTryCounter;
 
+    private LiftDoor LiftDoor;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        LiftDoor = GetComponent<LiftDoor>();
         index = 0;
         lvl.Add(pref1);
         lvl.Add(pref2);
@@ -55,7 +58,7 @@ public class LVLSwaper : MonoBehaviour
         {
             lvl.RemoveAt(index);
             maxindex -= 1;
-            Destroy(sceneobject);
+            Destroy(sceneobject, 3f);
             lift1.tag= "Untagged";
             reset1.tag = "Reset1";
             reset2.tag = "Reset1";
@@ -72,7 +75,7 @@ public class LVLSwaper : MonoBehaviour
         {
             lvl.RemoveAt(index);
             maxindex -= 1;
-            Destroy(sceneobject);
+            Destroy(sceneobject, 3f);
             lift2.tag = "Untagged";
             reset1.tag = "Reset2";
             reset2.tag = "Reset2";
@@ -89,15 +92,15 @@ public class LVLSwaper : MonoBehaviour
         {
             lift1.tag = "DontHaveAnamali";
             lift2.tag = "HaveAnamali";
-            reset1.tag = "Untagged";
-            reset2.tag = "Untagged";
+            reset1.tag = "Static";
+            reset2.tag = "Static";
         }
         else if (reset2.tag == "Reset2" || reset1.tag == "Reset2" && FirstTryCounter == 1)
         {
             lift1.tag = "HaveAnamali";
             lift2.tag = "DontHaveAnamali";
-            reset1.tag = "Untagged";
-            reset2.tag = "Untagged";
+            reset1.tag = "Static";
+            reset2.tag = "Static";
         }
     }
     public void SpawnObjectsForDHA()
@@ -111,7 +114,7 @@ public class LVLSwaper : MonoBehaviour
     public void SpawnObjectsForHA()
     {
         index = UnityEngine.Random.Range(0, maxindex);
-        transform.position = new Vector3(-4.74f, 0, -10.06f);
+        transform.position = new Vector3(-4.74f, 0, -10f);
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
         sceneobject.transform.Rotate(0, 180, 0);
     }
