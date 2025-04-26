@@ -7079,7 +7079,7 @@ Transform:
   m_GameObject: {fileID: 1958336399}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.546, y: 0.919, z: -20.59}
+  m_LocalPosition: {x: -2.546, y: 0.919, z: -21.538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7100,14 +7100,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lvl: []
-  pref1: {fileID: 2877666127700298189, guid: 35cc2a4b15c360d49b4ac8168ead4d57, type: 3}
-  pref2: {fileID: 4387303535440691514, guid: 394052595cfe17a45b826e903883ee39, type: 3}
-  pref3: {fileID: 5482431190692562575, guid: cd5f7e3d898f3b4449fb4b84b92528d4, type: 3}
+  prefabs:
+  - {fileID: 2877666127700298189, guid: 35cc2a4b15c360d49b4ac8168ead4d57, type: 3}
+  - {fileID: 4387303535440691514, guid: 394052595cfe17a45b826e903883ee39, type: 3}
+  - {fileID: 5482431190692562575, guid: cd5f7e3d898f3b4449fb4b84b92528d4, type: 3}
   Player: {fileID: 1958336399}
   lift1: {fileID: 688998987}
   lift2: {fileID: 1705788533}
   reset1: {fileID: 363126961}
   reset2: {fileID: 2130990961}
+  MeshRenderer1: {fileID: 118516493}
+  MeshRenderer2: {fileID: 1650046616}
+  NumberMaterials:
+  - {fileID: 2100000, guid: f6ada532c5790da4f897f98a5cb66e67, type: 2}
+  - {fileID: 2100000, guid: d129a65023a41d84c8c5379169ed75b2, type: 2}
+  - {fileID: 2100000, guid: da40a0bc48a836c4e82b9384c988e085, type: 2}
+  - {fileID: 2100000, guid: 1fb39b4ed35cb424ab9b9868eeb61607, type: 2}
+  - {fileID: 2100000, guid: 496fc8b0c276dbc498801d3475a6f7f2, type: 2}
+  - {fileID: 2100000, guid: ecf6b308f73469947a9e3d40b48f381d, type: 2}
+  - {fileID: 2100000, guid: c126fe35f2531b64f9d97d6498711f99, type: 2}
+  - {fileID: 2100000, guid: e6015e0501cdd7b45a95904323056b21, type: 2}
 --- !u!1001 &1964171972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7497,7 +7509,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998140400}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

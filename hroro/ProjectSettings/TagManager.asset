@@ -11,6 +11,8 @@ TagManager:
   - Door
   - firsttry
   - Static
+  - Anamali Lvl
+  - Not Anamali Lvl
   layers:
   - Default
   - TransparentFX

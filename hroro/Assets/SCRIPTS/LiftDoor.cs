@@ -47,7 +47,7 @@ public class LiftDoor : MonoBehaviour
     }
     public void VneLift()
     {
-        if (player.transform.position.z > -20.65f && player.transform.position.z < 10.55f)
+        if (player.transform.position.z > -19.64f && player.transform.position.z < 9.46f)
         {
             InLift = true;
         }
