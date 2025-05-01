@@ -4,8 +4,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void Interact();
     string GetHint();
-    void OnCursorIn();
-    void OnCursorOut();
+    void OpenDoor();
+    void CloseDoor();
 }

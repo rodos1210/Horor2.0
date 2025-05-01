@@ -1,39 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private Text hintText;
+    private bool keypress = false;
 
-    private IInteractable lastInteractableObject; 
     void Update()
     {
         RaycastHit hit;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Physics.Raycast(ray, out hit, 3f))
         {
-            Debug.Log("Hit smth");
-            IInteractable interactableObject;            
+            IInteractable interactableObject;
             if (hit.transform.TryGetComponent<IInteractable>(out interactableObject))
             {
-                lastInteractableObject = interactableObject;
-                interactableObject?.OnCursorIn();
                 hintText.text = interactableObject.GetHint();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    interactableObject.Interact();
-                    lastInteractableObject = null;
+                    if (keypress == false)
+                    {
+                        interactableObject.OpenDoor();
+                        keypress = true;
+                    }
+                    else
+                    {
+                        interactableObject.CloseDoor();
+                        keypress = false;
+                    }
                 }
             }                      
         }
         else
         {
             hintText.text = "";
-            lastInteractableObject?.OnCursorOut();
             /*if (lastInteractableObject != null)
             {
                 lastInteractableObject?.OnCursorOut();
