@@ -6,12 +6,16 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static Unity.VisualScripting.Member;
 
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private Text hintText;
-    private bool keypress = false;
+    public string DoorOpenAnimName, DoorCloseAnimName;
+    [SerializeField] private AudioSource source;
+    [SerializeField] private AudioClip opendoor;
+    [SerializeField] private AudioClip closedoor;
 
     void Update()
     {
@@ -19,32 +23,33 @@ public class PlayerInteract : MonoBehaviour
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Physics.Raycast(ray, out hit, 3f))
         {
-            IInteractable interactableObject;
-            if (hit.transform.TryGetComponent<IInteractable>(out interactableObject))
+            if (hit.collider.gameObject.tag == "Door")
             {
-                hintText.text = interactableObject.GetHint();
+                GameObject doorparent = hit.collider.transform.parent.gameObject;
+                Animator anim = doorparent.GetComponentInParent<Animator>();
+                hintText.text = "ֽאזלטעו E";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    if (keypress == false)
+                    if (anim.GetCurrentAnimatorStateInfo(0).IsName(DoorOpenAnimName))
                     {
-                        interactableObject.OpenDoor();
-                        keypress = true;
+                        anim.ResetTrigger("open");
+                        anim.SetTrigger("close");
+                        source.clip = closedoor;
+                        source.Play();
                     }
-                    else
+                    if (anim.GetCurrentAnimatorStateInfo(0).IsName(DoorCloseAnimName))
                     {
-                        interactableObject.CloseDoor();
-                        keypress = false;
+                        anim.ResetTrigger("close");
+                        anim.SetTrigger("open");
+                        source.clip = closedoor;
+                        source.Play();
                     }
                 }
-            }                      
-        }
-        else
-        {
-            hintText.text = "";
-            /*if (lastInteractableObject != null)
+            }
+            else
             {
-                lastInteractableObject?.OnCursorOut();
-            }*/
+                hintText.text = "";
+            }
         }
     }
 }
