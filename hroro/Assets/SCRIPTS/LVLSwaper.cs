@@ -98,7 +98,6 @@ public class LVLSwaper : MonoBehaviour
         {
             if (lvl[index].CompareTag("Not Anamali Lvl"))
             {
-                Debug.Log("+");
                 NumberMaterialCounter++;
                 MeshRenderer1.material = NumberMaterials[NumberMaterialCounter];
                 MeshRenderer2.material = NumberMaterials[NumberMaterialCounter];
