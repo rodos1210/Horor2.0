@@ -30,7 +30,6 @@ Material:
   m_InvalidKeywords:
   - _METALLICSPECGLOSSMAP
   - _OCCLUSIONMAP
-  - _SPECGLOSSMAP
   - _SPECULAR_SETUP
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0

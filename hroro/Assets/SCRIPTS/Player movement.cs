@@ -21,8 +21,16 @@ public class Playermovement : MonoBehaviour
 
     private CharacterController controller;
     private float vertikalSpeed;
+    
+
+    public AudioClip footstepSound;
+    [SerializeField] private AudioSource audioSource;
+    private float _vertical;
+    private float _horizontal;
     void Start()
     {
+
+        audioSource.clip = footstepSound;
 
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -65,7 +73,11 @@ public class Playermovement : MonoBehaviour
         {
             speed = walkspeed;
         }
-        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        _vertical = Input.GetAxis("Vertical");
+        _horizontal = Input.GetAxis("Horizontal");
+
+        Vector3 input = new Vector3(_horizontal, 0, _vertical);
         Vector3 move = transform.TransformDirection(input) * speed;
 
         if (controller.isGrounded && vertikalSpeed < 0)
@@ -75,5 +87,20 @@ public class Playermovement : MonoBehaviour
         vertikalSpeed += gravity * Time.deltaTime;
         move.y = vertikalSpeed;
         controller.Move(move * Time.deltaTime);
+
+        if (_vertical!=0.0f || _horizontal!=0.0f)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+/*        else
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }*/
     }
 }

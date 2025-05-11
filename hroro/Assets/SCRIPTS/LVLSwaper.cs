@@ -10,8 +10,6 @@ public class LVLSwaper : MonoBehaviour
 {
     public List<GameObject> lvl = new List<GameObject>();
 
-    public GameObject[] prefabs;
-
     private int index;
     private int maxindex = 3;
     private GameObject sceneobject;
@@ -41,16 +39,12 @@ public class LVLSwaper : MonoBehaviour
 
         LiftDoor = GetComponent<LiftDoor>();
         index = 0;
-        lvl.Add(prefabs[0]);
-        lvl.Add(prefabs[1]);
-        lvl.Add(prefabs[2]);
 
-        transform.position = new Vector3(0, 0, 0);
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
+        sceneobject.transform.position = new Vector3(0, 0, 0);
         Player.transform.position = new Vector3(-2.5f, 1, -21);
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -66,32 +60,30 @@ public class LVLSwaper : MonoBehaviour
         {
             if (lvl[index].CompareTag("Anamali Lvl"))
             {
-                Debug.Log("+");
                 NumberMaterialCounter++;
                 MeshRenderer1.material = NumberMaterials[NumberMaterialCounter];
                 MeshRenderer2.material = NumberMaterials[NumberMaterialCounter];
             }
             else
             {
-                Debug.Log("0");
                 NumberMaterialCounter = 0;
                 MeshRenderer1.material = NumberMaterials[NumberMaterialCounter];
                 MeshRenderer2.material = NumberMaterials[NumberMaterialCounter];
             }
 
+            lift1.tag = "Untagged";
             lvl.RemoveAt(index);
             maxindex -= 1;
-            Destroy(sceneobject, 3f);
-            lift1.tag= "Untagged";
+            Destroy(sceneobject,2f);
             reset1.tag = "Reset1";
             reset2.tag = "Reset1";
             if (Player.transform.position.z >10)
             {
-                SpawnObjectsForHA();
+                Invoke("SpawnObjectsForHA", 3f);
             }
             else
             {
-                SpawnObjectsForDHA();
+                Invoke("SpawnObjectsForDHA", 3f);
             }
         }
         else if (other.gameObject.CompareTag("DontHaveAnamali") && FirstTryCounter == 1)
@@ -104,55 +96,53 @@ public class LVLSwaper : MonoBehaviour
             }
             else
             {
-                Debug.Log("0");
                 NumberMaterialCounter = 0;
                 MeshRenderer1.material = NumberMaterials[NumberMaterialCounter];
                 MeshRenderer2.material = NumberMaterials[NumberMaterialCounter];
             }
 
+            lift2.tag = "Untagged";
             lvl.RemoveAt(index);
             maxindex -= 1;
-            Destroy(sceneobject, 3f);
-            lift2.tag = "Untagged";
+            Destroy(sceneobject,2f);
             reset1.tag = "Reset2";
             reset2.tag = "Reset2";
             if (Player.transform.position.z < -10)
             {
-                SpawnObjectsForDHA();
+                Invoke("SpawnObjectsForDHA",3f);
             }
             else
             {
-                SpawnObjectsForHA();
+                Invoke("SpawnObjectsForHA", 3f);
             }
         }
-        else if (reset1.tag == "Reset1" || reset2.tag == "Reset1" && FirstTryCounter == 1)
-        {
-            lift1.tag = "DontHaveAnamali";
-            lift2.tag = "HaveAnamali";
-            reset1.tag = "Static";
-            reset2.tag = "Static";
-        }
-        else if (reset2.tag == "Reset2" || reset1.tag == "Reset2" && FirstTryCounter == 1)
+        if (other.gameObject.CompareTag("Reset2"))
         {
             lift1.tag = "HaveAnamali";
             lift2.tag = "DontHaveAnamali";
             reset1.tag = "Static";
             reset2.tag = "Static";
         }
+        else if (other.gameObject.CompareTag("Reset1"))
+        {
+            lift1.tag = "DontHaveAnamali";
+            lift2.tag = "HaveAnamali";
+            reset1.tag = "Static";
+            reset2.tag = "Static";
+        }
+        
     }
     public void SpawnObjectsForDHA()
     {
         index = UnityEngine.Random.Range(0,maxindex);
-        transform.position = new Vector3(0, 0, 0);
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
-        
-        
+        sceneobject.transform.position = new Vector3(0, 0, 0);
     }
     public void SpawnObjectsForHA()
     {
         index = UnityEngine.Random.Range(0, maxindex);
-        transform.position = new Vector3(-4.74f, 0, -10f);
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
+        sceneobject.transform.position = new Vector3(-4.74f, 0, -10f);
         sceneobject.transform.Rotate(0, 180, 0);
     }
 }
