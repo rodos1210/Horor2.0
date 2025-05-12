@@ -988,6 +988,7 @@ GameObject:
   - component: {fileID: 8163316280667813174}
   - component: {fileID: 8670947676079668018}
   - component: {fileID: 4371536558689793136}
+  - component: {fileID: 2616706557490238815}
   m_Layer: 0
   m_Name: Door parent (1)
   m_TagString: Untagged
@@ -1128,6 +1129,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2616706557490238815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4086831680038206741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901994c5b7cf0fd4aab2258299dad293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4241383391151979348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1152,7 @@ GameObject:
   - component: {fileID: 7786588048978693160}
   - component: {fileID: 1654351371649099295}
   - component: {fileID: 2371153495328936883}
+  - component: {fileID: 2459351785721822817}
   m_Layer: 0
   m_Name: Door parent
   m_TagString: Untagged
@@ -1279,6 +1293,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2459351785721822817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4241383391151979348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901994c5b7cf0fd4aab2258299dad293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4268075991465976632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,6 +1671,7 @@ GameObject:
   - component: {fileID: 6741315858346950139}
   - component: {fileID: 68859761277258353}
   - component: {fileID: 4051104134787698342}
+  - component: {fileID: 2366299826840957866}
   m_Layer: 0
   m_Name: Door parent (2)
   m_TagString: Untagged
@@ -1785,6 +1812,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2366299826840957866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239383322848633041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901994c5b7cf0fd4aab2258299dad293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &21076591679204717
 PrefabInstance:
   m_ObjectHideFlags: 0

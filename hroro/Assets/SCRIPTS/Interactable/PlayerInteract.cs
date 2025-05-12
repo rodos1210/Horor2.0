@@ -17,6 +17,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private AudioClip opendoor;
     [SerializeField] private AudioClip closedoor;
 
+
     void Update()
     {
         RaycastHit hit;
@@ -34,22 +35,33 @@ public class PlayerInteract : MonoBehaviour
                     {
                         anim.ResetTrigger("open");
                         anim.SetTrigger("close");
-                        source.clip = closedoor;
-                        source.Play();
+                        if (DoorIsPlaying.IsPlaying == false)
+                        {
+                            source.clip = opendoor;
+                            source.Play();
+                        }
                     }
                     if (anim.GetCurrentAnimatorStateInfo(0).IsName(DoorCloseAnimName))
                     {
                         anim.ResetTrigger("close");
                         anim.SetTrigger("open");
-                        source.clip = closedoor;
-                        source.Play();
+                        if (DoorIsPlaying.IsPlaying ==false)
+                        {
+                            source.clip = closedoor;
+                            source.Play();
+                        }
                     }
+                    
                 }
             }
             else
             {
                 hintText.text = "";
             }
+        }
+        else
+        {
+            hintText.text = "";
         }
     }
 }
