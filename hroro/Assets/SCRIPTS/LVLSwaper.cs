@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class LVLSwaper : MonoBehaviour
@@ -28,7 +29,6 @@ public class LVLSwaper : MonoBehaviour
     private int FirstTryCounter;
 
     private LiftDoor LiftDoor;
-
 
     // Start is called before the first frame update
     void Start()
@@ -131,6 +131,15 @@ public class LVLSwaper : MonoBehaviour
             reset2.tag = "Static";
         }
         
+
+
+        if (other.gameObject.CompareTag("Monster"))
+        {
+            RestartGame();
+        }
+
+
+
     }
     public void SpawnObjectsForDHA()
     {
@@ -144,5 +153,11 @@ public class LVLSwaper : MonoBehaviour
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
         sceneobject.transform.position = new Vector3(-4.74f, 0, -10f);
         sceneobject.transform.Rotate(0, 180, 0);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Player.transform.position = new Vector3(-2.5f, 1, -21);
     }
 }

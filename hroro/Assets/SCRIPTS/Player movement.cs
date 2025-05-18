@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
@@ -23,24 +24,22 @@ public class Playermovement : MonoBehaviour
     private float vertikalSpeed;
     
 
-    public AudioClip footstepSound;
+    public AudioClip[] footstepSound;
     [SerializeField] private AudioSource audioSource;
     private float _vertical;
     private float _horizontal;
     void Start()
     {
-
-        audioSource.clip = footstepSound;
-
         controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()
     {
-        HendleLook();
-        HandleMove();
+        if ( PravilaButton.Press == true)
+        {
+            HendleLook();
+            HandleMove();
+        }
     }
 
 
@@ -65,17 +64,18 @@ public class Playermovement : MonoBehaviour
     private void HandleMove()
     {
         float speed;
-        if (Input.GetKey(KeyCode.LeftShift))
+        _vertical = Input.GetAxis("Vertical");
+        _horizontal = Input.GetAxis("Horizontal");
+        if (Input.GetButton("Debug Multiplier"))
         {
             speed = runspeed;
         }
+
         else
         {
             speed = walkspeed;
         }
 
-        _vertical = Input.GetAxis("Vertical");
-        _horizontal = Input.GetAxis("Horizontal");
 
         Vector3 input = new Vector3(_horizontal, 0, _vertical);
         Vector3 move = transform.TransformDirection(input) * speed;
@@ -88,19 +88,27 @@ public class Playermovement : MonoBehaviour
         move.y = vertikalSpeed;
         controller.Move(move * Time.deltaTime);
 
-        if (_vertical!=0.0f || _horizontal!=0.0f)
+        if ((_vertical!=0.0f || _horizontal!=0.0f) && speed == walkspeed)
         {
             if (!audioSource.isPlaying)
             {
+                audioSource.pitch = 1;
+                audioSource.clip = footstepSound[Random.Range(0, footstepSound.Length)];
                 audioSource.Play();
             }
         }
-/*        else
+        else if ((_vertical != 0.0f || _horizontal != 0.0f) && speed == runspeed)
         {
-            if (audioSource.isPlaying)
+            if (!audioSource.isPlaying)
             {
-                audioSource.Stop();
+                audioSource.pitch = 1.5f;
+                audioSource.clip = footstepSound[Random.Range(0, footstepSound.Length)];
+                audioSource.Play();
             }
-        }*/
+        }
+        else
+        {
+            audioSource.Pause();
+        }
     }
 }
