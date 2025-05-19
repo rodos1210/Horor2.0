@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MercLampa : MonoBehaviour
 {
-    public float minIntensity = 2f;
-    public float maxIntensity = 5f;
-    public float flickerSpeed = 0.1f;
+    private float minIntensity = 10f;
+    private float maxIntensity = 20f;
+    private float flickerSpeed = 0.1f;
 
     private Light lightComponent;
 
