@@ -6,13 +6,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using YG;
 
 public class LVLSwaper : MonoBehaviour
 {
     public List<GameObject> lvl = new List<GameObject>();
 
     private int index;
-    private int maxindex = 3;
+    private int maxindex = 32;
     private GameObject sceneobject;
     public GameObject Player;
 
@@ -30,6 +31,13 @@ public class LVLSwaper : MonoBehaviour
 
     private LiftDoor LiftDoor;
 
+    public GameObject GoodFinish;
+    public GameObject BadFinish;
+
+    public GameObject Block1;
+    public GameObject Block2;
+
+    private int LvlCounter = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +48,7 @@ public class LVLSwaper : MonoBehaviour
         LiftDoor = GetComponent<LiftDoor>();
         index = 0;
 
+        LvlCounter += 1;
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
         sceneobject.transform.position = new Vector3(0, 0, 0);
         Player.transform.position = new Vector3(-2.5f, 1, -21);
@@ -72,19 +81,42 @@ public class LVLSwaper : MonoBehaviour
             }
 
             lift1.tag = "Untagged";
+            lift2.tag = "Untagged";
+            Block1.SetActive(true);
+            Block2.SetActive(true);
             lvl.RemoveAt(index);
             maxindex -= 1;
-            Destroy(sceneobject,2f);
+            Destroy(sceneobject, 2f);
+            YandexGame.FullscreenShow();
             reset1.tag = "Reset1";
-            reset2.tag = "Reset1";
-            if (Player.transform.position.z >10)
+            reset2.tag = "Reset2";
+            if (Player.transform.position.z > 0 && NumberMaterialCounter != 8 && LvlCounter != 32)
             {
                 Invoke("SpawnObjectsForHA", 3f);
+            }
+            else if (Player.transform.position.z > 0 && NumberMaterialCounter == 8) // SpawnGoodFinishForHA
+            {
+                Invoke("SpawnGoodFinishForHA", 3f);
+            }
+            else if (Player.transform.position.z < 0 && NumberMaterialCounter == 8) // SpawnGoodFinishForDHA
+            {
+                Invoke("SpawnGoodFinishForDHA", 3f);
+            }
+            else if (Player.transform.position.z > 0 && LvlCounter == 32 && NumberMaterialCounter != 8)   // SpawnBadFinishForHA
+            {
+                Invoke("SpawnBadFinishForHA", 3f);
+            }
+            else if (Player.transform.position.z < 0 && LvlCounter == 32 && NumberMaterialCounter != 8)   // SpawnBadFinishForDHA
+            {
+                Invoke("SpawnBadFinishForHA", 3f);
             }
             else
             {
                 Invoke("SpawnObjectsForDHA", 3f);
             }
+            LvlCounter += 1;
+            Invoke("FalseBlock1", 1f);
+            Invoke("FalseBlock2", 1f);
         }
         else if (other.gameObject.CompareTag("DontHaveAnamali") && FirstTryCounter == 1)
         {
@@ -102,19 +134,42 @@ public class LVLSwaper : MonoBehaviour
             }
 
             lift2.tag = "Untagged";
+            lift1.tag = "Untagged";
+            Block1.SetActive(true);
+            Block2.SetActive(true);
             lvl.RemoveAt(index);
             maxindex -= 1;
-            Destroy(sceneobject,2f);
-            reset1.tag = "Reset2";
+            Destroy(sceneobject, 2f);
+            YandexGame.FullscreenShow();
             reset2.tag = "Reset2";
-            if (Player.transform.position.z < -10)
+            reset1.tag = "Reset1";
+            if (Player.transform.position.z < 0 && NumberMaterialCounter != 8 && LvlCounter != 32)
             {
-                Invoke("SpawnObjectsForDHA",3f);
+                Invoke("SpawnObjectsForDHA", 3f);
+            }
+            else if (Player.transform.position.z < 0 && NumberMaterialCounter == 8) // SpawnGoodFinishForDHA
+            {
+                Invoke("SpawnGoodFinishForDHA", 3f);
+            }
+            else if (Player.transform.position.z < 0 && LvlCounter == 32 && NumberMaterialCounter != 8) // SpawnBadFinishForDHA
+            {
+                Invoke("SpawnBadFinishForDHA", 3f);
+            }
+            else if (Player.transform.position.z > 0 && LvlCounter == 32 && NumberMaterialCounter != 8)   // SpawnBadFinishForHA
+            {
+                Invoke("SpawnBadFinishForHA", 3f);
+            }
+            else if (Player.transform.position.z > 0 && NumberMaterialCounter == 8) // SpawnGoodFinishForHA
+            {
+                Invoke("SpawnGoodFinishForHA", 3f);
             }
             else
             {
                 Invoke("SpawnObjectsForHA", 3f);
             }
+            LvlCounter += 1;
+            Invoke("FalseBlock1", 1f);
+            Invoke("FalseBlock2", 1f);
         }
         if (other.gameObject.CompareTag("Reset2"))
         {
@@ -130,7 +185,7 @@ public class LVLSwaper : MonoBehaviour
             reset1.tag = "Static";
             reset2.tag = "Static";
         }
-        
+
 
 
         if (other.gameObject.CompareTag("Monster"))
@@ -143,7 +198,7 @@ public class LVLSwaper : MonoBehaviour
     }
     public void SpawnObjectsForDHA()
     {
-        index = UnityEngine.Random.Range(0,maxindex);
+        index = UnityEngine.Random.Range(0, maxindex);
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
         sceneobject.transform.position = new Vector3(0, 0, 0);
     }
@@ -151,7 +206,7 @@ public class LVLSwaper : MonoBehaviour
     {
         index = UnityEngine.Random.Range(0, maxindex);
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
-        sceneobject.transform.position = new Vector3(-4.74f, 0, -10f);
+        sceneobject.transform.position = new Vector3(-4.74f, 0, -10.03f);
         sceneobject.transform.Rotate(0, 180, 0);
     }
 
@@ -159,5 +214,53 @@ public class LVLSwaper : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Player.transform.position = new Vector3(-2.5f, 1, -21);
+    }
+
+    public void SpawnGoodFinishForDHA()
+    {
+        sceneobject = Instantiate(GoodFinish, transform.position, Quaternion.identity);
+        sceneobject.transform.position = new Vector3(-2.2f, 2.4f, -5.09f);
+        sceneobject.transform.Rotate(0, 180, 0);
+        reset1.SetActive(false);
+        reset2.SetActive(false);
+        lift1.SetActive(false);
+        lift2.SetActive(false);
+    }
+    public void SpawnGoodFinishForHA()
+    {
+        sceneobject = Instantiate(GoodFinish, transform.position, Quaternion.identity);
+        sceneobject.transform.position = new Vector3(-2.55f, 2.4f, -4.98f);
+        reset1.SetActive(false);
+        reset2.SetActive(false);
+        lift1.SetActive(false);
+        lift2.SetActive(false);
+    }
+    public void SpawnBadFinishForDHA()
+    {
+        sceneobject = Instantiate(BadFinish, transform.position, Quaternion.identity);
+        sceneobject.transform.position = new Vector3(-2.2f, 2.4f, -5.09f);
+        sceneobject.transform.Rotate(0, 180, 0);
+        reset1.SetActive(false);
+        reset2.SetActive(false);
+        lift1.SetActive(false);
+        lift2.SetActive(false);
+    }
+    public void SpawnBadFinishForHA()
+    {
+        sceneobject = Instantiate(BadFinish, transform.position, Quaternion.identity);
+        sceneobject.transform.position = new Vector3(-2.55f, 2.4f, -4.98f);
+        reset1.SetActive(false);
+        reset2.SetActive(false);
+        lift1.SetActive(false);
+        lift2.SetActive(false);
+    }
+
+    public void FalseBlock1()
+    {
+        Block1.SetActive(false);
+    }
+    public void FalseBlock2()
+    {
+        Block2.SetActive(false);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
 
-public class TestDoorInteractable : MonoBehaviour, IInteractable
+public class TestDoorInteractable : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private AudioSource source;

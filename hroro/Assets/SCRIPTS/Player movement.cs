@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Playermovement : MonoBehaviour
 {
@@ -37,8 +35,15 @@ public class Playermovement : MonoBehaviour
     {
         if ( PravilaButton.Press == true)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             HendleLook();
             HandleMove();
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         }
     }
 

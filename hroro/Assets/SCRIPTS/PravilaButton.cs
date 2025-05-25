@@ -11,15 +11,11 @@ public class PravilaButton : MonoBehaviour
     public void PressKnopka()
     {
         Pravila.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         Press = true;
     }
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
         Press=false;
     }
 }

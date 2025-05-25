@@ -18,6 +18,9 @@ TagManager:
   - Screem triger for koridor
   - Monster
   - FlashLight
+  - FInish
+  - BadFinish
+  - BadMonster
   layers:
   - Default
   - TransparentFX
