@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MercLampa : MonoBehaviour
+public class MercLampa2 : MonoBehaviour
 {
-    private float minIntensity = 5f;
-    private float maxIntensity = 20f;
+    private float minIntensity = 0.1f;
+    private float maxIntensity = 10f;
     private float flickerSpeed = 0.1f;
 
     private Light lightComponent;
@@ -24,6 +24,4 @@ public class MercLampa : MonoBehaviour
             yield return new WaitForSeconds(flickerSpeed);
         }
     }
-
-
 }
