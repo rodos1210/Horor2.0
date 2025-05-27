@@ -12,7 +12,7 @@ public class LongKoridorTriger : MonoBehaviour
     {
         if (MonsterTrig.transform.position.z > 0)
         {
-            Monster.transform.Rotate(0, 180, 0);
+            Monster.transform.Rotate(0, 0, 0);
         }
     }
 

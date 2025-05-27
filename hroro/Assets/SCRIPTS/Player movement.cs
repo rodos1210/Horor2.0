@@ -20,7 +20,7 @@ public class Playermovement : MonoBehaviour
 
     private CharacterController controller;
     private float vertikalSpeed;
-    
+
 
     public AudioClip[] footstepSound;
     [SerializeField] private AudioSource audioSource;
@@ -33,7 +33,7 @@ public class Playermovement : MonoBehaviour
 
     void Update()
     {
-        if ( PravilaButton.Press == true)
+        if (PravilaButton.Press == true)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -93,7 +93,7 @@ public class Playermovement : MonoBehaviour
         move.y = vertikalSpeed;
         controller.Move(move * Time.deltaTime);
 
-        if ((_vertical!=0.0f || _horizontal!=0.0f) && speed == walkspeed)
+        if ((_vertical != 0.0f || _horizontal != 0.0f) && speed == walkspeed)
         {
             if (!audioSource.isPlaying)
             {

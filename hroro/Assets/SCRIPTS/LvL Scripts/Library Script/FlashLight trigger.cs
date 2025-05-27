@@ -30,6 +30,7 @@ public class FlashLighttrigger : MonoBehaviour
             SetActive = false;
             Trigger.GetComponent<BoxCollider>().enabled = false;
         }
+        Invoke("ActiveFlashLight", 0.3f);
     }
 
     public IEnumerator SpawnMonster()
@@ -42,5 +43,9 @@ public class FlashLighttrigger : MonoBehaviour
             Monster.SetActive(false);
             SetActive = true;
         }
+    }
+    public void ActiveFlashLight()
+    {
+        Light.enabled = true;
     }
 }
