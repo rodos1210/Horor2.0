@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 public class Platform : MonoBehaviour
 {
@@ -35,14 +36,14 @@ public class Platform : MonoBehaviour
 
     private void Start()
     {
-        if (CurrentPlatform == PlatformType.Mobile)
+        if (CurrentPlatform == PlatformType.Mobile || CurrentPlatform == PlatformType.Other)
         {
             Player.GetComponent<MobileMovement>().enabled = true;
             Camera.GetComponent<CamMobileMovement>().enabled = true;
             Player.GetComponent<Playermovement>().enabled = false;
             MobileButton.SetActive(true);
         }
-        else
+        else if (CurrentPlatform == PlatformType.PC)
         {
             Player.GetComponent<MobileMovement>().enabled = false;
             Camera.GetComponent<CamMobileMovement>().enabled = false;

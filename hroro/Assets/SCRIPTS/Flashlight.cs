@@ -16,16 +16,20 @@ public class Flashlight : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (Light.enabled == false)
-            {
-                source.Play();
-                Light.enabled = true;
-            }
-            else
-            {
-                source.Play();
-                Light.enabled = false;
-            }
+            OnOffFlashLight();
+        }
+    }
+    public void OnOffFlashLight()
+    {
+        if (Light.enabled == false)
+        {
+            source.Play();
+            Light.enabled = true;
+        }
+        else
+        {
+            source.Play();
+            Light.enabled = false;
         }
     }
 }

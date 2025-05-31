@@ -208,8 +208,8 @@ QualitySettings:
     terrainFadeLength: 5
     terrainMaxTrees: 50
     excludedTargetPlatforms:
-    - WebGL
     - Standalone
+    - WebGL
   - serializedVersion: 3
     name: Very High
     pixelLightCount: 3
@@ -309,8 +309,7 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms:
-    - WebGL
+    excludedTargetPlatforms: []
   - serializedVersion: 3
     name: Level 6
     pixelLightCount: 4
@@ -359,7 +358,8 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - WebGL
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
     Android: 2

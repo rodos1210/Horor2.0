@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using static Unity.VisualScripting.Member;
 
 public class PlayerInteract : MonoBehaviour
@@ -20,6 +19,8 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField] private AudioSource muzic1;
 
+    private bool PressButton;
+    [SerializeField] private GameObject Button;
 
     [SerializeField] private GameObject GoodFinishPanel;
     public static bool tp = false;
@@ -42,10 +43,14 @@ public class PlayerInteract : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Door")
             {
+                if (Platform.CurrentPlatform == Platform.PlatformType.Mobile || Platform.CurrentPlatform == Platform.PlatformType.Other)
+                {
+                    Button.SetActive(true);
+                }
                 GameObject doorparent = hit.collider.transform.parent.gameObject;
                 Animator anim = doorparent.GetComponentInParent<Animator>();
                 hintText.text = "ќткрыть";
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) || PressButton==true)
                 {
                     if (anim.GetCurrentAnimatorStateInfo(0).IsName(DoorOpenAnimName))
                     {
@@ -67,24 +72,33 @@ public class PlayerInteract : MonoBehaviour
                             source.Play();
                         }
                     }
-                    
+                    PressButton = false;
                 }
             }
             else if (hit.collider.gameObject.tag == "Finish")
             {
+                if (Platform.CurrentPlatform == Platform.PlatformType.Mobile || Platform.CurrentPlatform == Platform.PlatformType.Other)
+                {
+                    Button.SetActive(true);
+                }
                 hintText.text = "—бежать";
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) || PressButton == true)
                 {
                     GoodFinishPanel.SetActive(true);
                     PravilaButton.Press=false;
                     muzic1.Play();
+                    PressButton=false;
                 }
             }
             else if (hit.collider.gameObject.tag == "BadFinish")
             {
+                if (Platform.CurrentPlatform == Platform.PlatformType.Mobile || Platform.CurrentPlatform == Platform.PlatformType.Other)
+                {
+                    Button.SetActive(true);
+                }
                 GameObject Monster = GameObject.Find("Monster");
                 hintText.text = "—бежать";
-                if (Input.GetKeyDown(KeyCode.E) && cam.transform.position.z > 0)
+                if ((Input.GetKeyDown(KeyCode.E) || PressButton == true) && cam.transform.position.z > 0)
                 {
                     if (tp==false)
                     {
@@ -93,7 +107,7 @@ public class PlayerInteract : MonoBehaviour
                         Monster.GetComponent<AudioSource>().Play();
                     }
                 }
-                else if (Input.GetKeyDown(KeyCode.E) && cam.transform.position.z < 0)
+                else if ((Input.GetKeyDown(KeyCode.E) || PressButton == true) && cam.transform.position.z < 0)
                 {
                     if (tp == false)
                     {
@@ -102,15 +116,18 @@ public class PlayerInteract : MonoBehaviour
                         Monster.GetComponent<AudioSource>().Play();
                     }
                 }
+                PressButton = false;
             }
 
             else
             {
+                Button.SetActive(false);
                 hintText.text = "";
             }
         }
         else
         {
+            Button.SetActive(false);
             hintText.text = "";
         }
     }
@@ -121,5 +138,15 @@ public class PlayerInteract : MonoBehaviour
             GameObject Panel = GameObject.Find("Bad Finish Canvas");
             Panel.SetActive(true);
         }
+    }
+
+    public void TrueButton()
+    {
+        PressButton = true;
+    }
+
+    public void FalseButton()
+    {
+        PressButton = false;
     }
 }
