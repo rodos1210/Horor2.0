@@ -1,0 +1,97 @@
+{
+    "idSave": 99,
+    "isFirstSession": false,
+    "language": "ru",
+    "promptDone": false,
+    "money": 1,
+    "newPlayerName": "Hello!",
+    "openLevels": [
+        false,
+        true,
+        false
+    ],
+    "maxindex": 25,
+    "LvlCounter": 8,
+    "NumberMatCount": 8,
+    "list": [
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29306
+        },
+        {
+            "instanceID": 29308
+        },
+        {
+            "instanceID": 29310
+        },
+        {
+            "instanceID": 29312
+        },
+        {
+            "instanceID": 29314
+        },
+        {
+            "instanceID": 29316
+        },
+        {
+            "instanceID": 29320
+        },
+        {
+            "instanceID": 29322
+        },
+        {
+            "instanceID": 29324
+        },
+        {
+            "instanceID": 29326
+        },
+        {
+            "instanceID": 29328
+        },
+        {
+            "instanceID": 29330
+        },
+        {
+            "instanceID": 29332
+        },
+        {
+            "instanceID": 29334
+        },
+        {
+            "instanceID": 29336
+        },
+        {
+            "instanceID": 29338
+        }
+    ],
+    "FirsTry": 1,
+    "sceneobject": {
+        "instanceID": -1493670
+    }
+}

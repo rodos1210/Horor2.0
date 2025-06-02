@@ -1,4 +1,7 @@
 ﻿
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace YG
 {
     [System.Serializable]
@@ -15,6 +18,10 @@ namespace YG
         public int money = 1;                       // Можно задать полям значения по умолчанию
         public string newPlayerName = "Hello!";
         public bool[] openLevels = new bool[3];
+        public int maxindex;
+        public int LvlCounter;
+        public int NumberMatCount;
+        public List<GameObject> list;
 
         // Ваши сохранения
 

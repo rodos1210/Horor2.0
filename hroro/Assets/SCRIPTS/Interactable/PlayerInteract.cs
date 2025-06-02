@@ -43,7 +43,7 @@ public class PlayerInteract : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Door")
             {
-                if (Platform.CurrentPlatform == Platform.PlatformType.Mobile || Platform.CurrentPlatform == Platform.PlatformType.Other)
+                if (Platform.platform == true)
                 {
                     Button.SetActive(true);
                 }
@@ -77,7 +77,7 @@ public class PlayerInteract : MonoBehaviour
             }
             else if (hit.collider.gameObject.tag == "Finish")
             {
-                if (Platform.CurrentPlatform == Platform.PlatformType.Mobile || Platform.CurrentPlatform == Platform.PlatformType.Other)
+                if (Platform.platform == true)
                 {
                     Button.SetActive(true);
                 }
@@ -92,7 +92,7 @@ public class PlayerInteract : MonoBehaviour
             }
             else if (hit.collider.gameObject.tag == "BadFinish")
             {
-                if (Platform.CurrentPlatform == Platform.PlatformType.Mobile || Platform.CurrentPlatform == Platform.PlatformType.Other)
+                if (Platform.platform == true)
                 {
                     Button.SetActive(true);
                 }

@@ -16,6 +16,6 @@ public class PravilaButton : MonoBehaviour
 
     private void Start()
     {
-        Press=false;
+        Press = false;
     }
 }

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using YG;
 
@@ -13,7 +15,7 @@ public class LVLSwaper : MonoBehaviour
     public List<GameObject> lvl = new List<GameObject>();
 
     private int index;
-    private int maxindex = 32;
+    public static int maxindex = 32;
     private GameObject sceneobject;
     public GameObject Player;
 
@@ -37,10 +39,17 @@ public class LVLSwaper : MonoBehaviour
     public GameObject Block1;
     public GameObject Block2;
 
-    private int LvlCounter = 0;
+    public static int LvlCounter = 0;
+
+
+    public GameObject SaveObj;
+    public GameObject ReklamaObj;
+    public Text ReklamaText;
+    public GameObject Prav;
     // Start is called before the first frame update
     void Start()
     {
+        YandexGame.FullscreenShow();
         NumberMaterialCounter = 0;
         MeshRenderer1.material = NumberMaterials[NumberMaterialCounter];
         MeshRenderer2.material = NumberMaterials[NumberMaterialCounter];
@@ -52,6 +61,17 @@ public class LVLSwaper : MonoBehaviour
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
         sceneobject.transform.position = new Vector3(0, 0, 0);
         Player.transform.position = new Vector3(-2.5f, 1, -21);
+        if (YandexGame.SDKEnabled == true)
+        {
+            LoadSaveData();
+            if (maxindex!=32)
+            {
+                Prav.SetActive(false);
+                PravilaButton.Press = true;
+            }
+        }
+        MeshRenderer1.material = NumberMaterials[NumberMaterialCounter];
+        MeshRenderer2.material = NumberMaterials[NumberMaterialCounter];
     }
 
     void Update()
@@ -80,6 +100,9 @@ public class LVLSwaper : MonoBehaviour
                 MeshRenderer2.material = NumberMaterials[NumberMaterialCounter];
             }
 
+            SaveData();
+            Debug.Log(LvlCounter);
+            StartCoroutine(SaveAndReklamaCanvas());
             lift1.tag = "Untagged";
             lift2.tag = "Untagged";
             Block1.SetActive(true);
@@ -87,7 +110,6 @@ public class LVLSwaper : MonoBehaviour
             lvl.RemoveAt(index);
             maxindex -= 1;
             Destroy(sceneobject, 2f);
-            YandexGame.FullscreenShow();
             reset1.tag = "Reset1";
             reset2.tag = "Reset2";
             if (Player.transform.position.z > 0 && NumberMaterialCounter != 8 && LvlCounter != 32)
@@ -133,6 +155,9 @@ public class LVLSwaper : MonoBehaviour
                 MeshRenderer2.material = NumberMaterials[NumberMaterialCounter];
             }
 
+            SaveData();
+            Debug.Log(LvlCounter);
+            StartCoroutine(SaveAndReklamaCanvas());
             lift2.tag = "Untagged";
             lift1.tag = "Untagged";
             Block1.SetActive(true);
@@ -140,7 +165,6 @@ public class LVLSwaper : MonoBehaviour
             lvl.RemoveAt(index);
             maxindex -= 1;
             Destroy(sceneobject, 2f);
-            YandexGame.FullscreenShow();
             reset2.tag = "Reset2";
             reset1.tag = "Reset1";
             if (Player.transform.position.z < 0 && NumberMaterialCounter != 8 && LvlCounter != 32)
@@ -199,12 +223,14 @@ public class LVLSwaper : MonoBehaviour
     public void SpawnObjectsForDHA()
     {
         index = UnityEngine.Random.Range(0, maxindex);
+        Debug.Log(maxindex);
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
         sceneobject.transform.position = new Vector3(0, 0, 0);
     }
     public void SpawnObjectsForHA()
     {
         index = UnityEngine.Random.Range(0, maxindex);
+        Debug.Log(maxindex);
         sceneobject = Instantiate(lvl[index], transform.position, Quaternion.identity);
         sceneobject.transform.position = new Vector3(-4.74f, 0, -10.03f);
         sceneobject.transform.Rotate(0, 180, 0);
@@ -262,5 +288,41 @@ public class LVLSwaper : MonoBehaviour
     public void FalseBlock2()
     {
         Block2.SetActive(false);
+    }
+
+    public void SaveData()
+    {
+        YandexGame.savesData.NumberMatCount = NumberMaterialCounter;
+        YandexGame.savesData.maxindex = maxindex;
+        YandexGame.savesData.LvlCounter = LvlCounter;
+        YandexGame.savesData.list = lvl;
+        YandexGame.SaveProgress();
+    }
+
+    public void LoadSaveData()
+    {
+        NumberMaterialCounter = YandexGame.savesData.NumberMatCount;
+        maxindex = YandexGame.savesData.maxindex;
+        LvlCounter = YandexGame.savesData.LvlCounter;
+        lvl = YandexGame.savesData.list;
+    }
+
+    public IEnumerator SaveAndReklamaCanvas()
+    {
+        if (YandexGame.timerShowAd >= 27f)
+        {
+            ReklamaObj.SetActive(true);
+            ReklamaText.text = "Реклама начнется через 3";
+            yield return new WaitForSeconds(1f);
+            ReklamaText.text = "Реклама начнется через 2";
+            yield return new WaitForSeconds(1f);
+            ReklamaText.text = "Реклама начнется через 1";
+            yield return new WaitForSeconds(1f);
+            YandexGame.FullscreenShow();
+            ReklamaObj.SetActive(false);
+        }
+        SaveObj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        SaveObj.SetActive(false);
     }
 }

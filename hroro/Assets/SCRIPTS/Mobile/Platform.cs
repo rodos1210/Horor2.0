@@ -8,47 +8,61 @@ public class Platform : MonoBehaviour
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject Camera;
     [SerializeField] private GameObject MobileButton;
-    public enum PlatformType
+    [SerializeField] private Material material;
+    public Shader PcShader;
+    public Shader MobileShader;
+    public static bool platform;
+    void Start()
     {
-        PC,
-        Mobile,
-        Other
-    }
-
-    public static PlatformType CurrentPlatform { get; private set; }
-
-    void Awake()
-    {
-        DetectPlatform();
-        Debug.Log("Текущая платформа: " + CurrentPlatform);
-    }
-
-    private void DetectPlatform()
-    {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
-            CurrentPlatform = PlatformType.PC;
-#elif UNITY_IOS || UNITY_ANDROID
-            CurrentPlatform = PlatformType.Mobile;
-#else
-            CurrentPlatform = PlatformType.Other;
-#endif
-    }
-
-    private void Start()
-    {
-        if (CurrentPlatform == PlatformType.Mobile || CurrentPlatform == PlatformType.Other)
+        // Ждём, пока SDK не инициализируется
+        if (YandexGame.SDKEnabled)
         {
-            Player.GetComponent<MobileMovement>().enabled = true;
-            Camera.GetComponent<CamMobileMovement>().enabled = true;
-            Player.GetComponent<Playermovement>().enabled = false;
-            MobileButton.SetActive(true);
+            CheckDevice();
         }
-        else if (CurrentPlatform == PlatformType.PC)
+        else
         {
-            Player.GetComponent<MobileMovement>().enabled = false;
-            Camera.GetComponent<CamMobileMovement>().enabled = false;
-            Player.GetComponent<Playermovement>().enabled = true;
-            MobileButton.SetActive(false);
+            YandexGame.GetDataEvent += CheckDevice;
         }
+    }
+
+    void CheckDevice()
+    {
+        string device = YandexGame.EnvironmentData.deviceType;
+
+        switch (device)
+        {
+            case "mobile":
+                platform = true;
+                Player.GetComponent<Playermovement>().enabled = false;
+                Player.GetComponent<MobileMovement>().enabled = true;
+                Camera.GetComponent<CamMobileMovement>().enabled = true;
+                MobileButton.SetActive(true);
+                Debug.Log("mobile");
+                material.shader = MobileShader;
+                break;
+            case "desktop":
+                platform = false;
+                Player.GetComponent<Playermovement>().enabled = true;
+                Player.GetComponent<MobileMovement>().enabled = false;
+                Camera.GetComponent<CamMobileMovement>().enabled = false;
+                MobileButton.SetActive(false);
+                Debug.Log("PC");
+                material.shader = PcShader;
+                break;
+            case "tablet":
+                platform = true;
+                Player.GetComponent<Playermovement>().enabled = false;
+                Player.GetComponent<MobileMovement>().enabled = true;
+                Camera.GetComponent<CamMobileMovement>().enabled = true;
+                MobileButton.SetActive(true);
+                material.shader = MobileShader;
+                break;
+            default:
+                Debug.Log("Платформа не определена: " + device);
+                break;
+        }
+
+        // Отписываемся, чтобы не вызывался снова
+        YandexGame.GetDataEvent -= CheckDevice;
     }
 }
